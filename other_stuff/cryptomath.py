@@ -1,4 +1,6 @@
 # Cryptomath Module
+
+# The first two functions are from
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
 def gcd(a, b):
@@ -25,6 +27,7 @@ def find_mod_inverse(a, m):
     return u1 % m
 
 
+# My functions
 def is_prime(num):
     n = 2
     while n <= num ** .5:
