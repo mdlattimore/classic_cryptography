@@ -1,6 +1,7 @@
 """A one-time pad encryption and decryption tool. The encryption is done by adding the LETTERS[index] position of each character of the cleartext to the LETTERS[index] position of the corresponding character in the key and then returning the value of the new LETTERS[index] as the enciphered character. Includes a function to create the one-time pad that is the same length as the cleartext"""
+# 37 character set including digits and space.
 
-import random
+import secrets
 
 # Character Set
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890"
@@ -29,7 +30,7 @@ def create_pad(n: int) -> str:
     """Create a one-time pad using the random module"""
     pad = ""
     for n in range(n):
-        pad += random.choice(LETTERS)
+        pad += secrets.choice(LETTERS)
     return pad
 
 msg = input("Enter message: ").upper()
@@ -52,6 +53,8 @@ print(f"Encrypted text: {encrypted_msg}")
 # Checks the encryption/decryption accuracy 
 print(decrypt(encrypted_msg))
 
+
+# Chart of indexes for quickly checking accuracy of functions
 # A B C D E F G H I J K L M N O P Q R S T U V W X Y Z _ 1 2 3 4 5 6 7 8 9 0
 # 0 1 2 3 4 5 6 7 8 9 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 
 #                     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6

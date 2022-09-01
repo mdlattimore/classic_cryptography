@@ -17,7 +17,7 @@ def trigramming(text: str) -> list:
     result = []
     for trigram in set(trigrams):
         num_trigrams = trigrams.count(trigram)
-        if num_trigrams > 1:
+        if num_trigrams > 2:
             result.append([trigram, num_trigrams])
     result.sort(key = lambda x: x[1], reverse=True)
 

@@ -1,4 +1,5 @@
 """A one-time pad encryption and decryption tool. The encryption is done by adding the LETTERS[index] position of each character of the cleartext to the LETTERS[index] position of the corresponding character in the key and then returning the value of the new LETTERS[index] as the enciphered character. Includes a function to create the one-time pad that is the same length as the cleartext"""
+# 26 character set and spaces are eliminated
 
 import random
 
