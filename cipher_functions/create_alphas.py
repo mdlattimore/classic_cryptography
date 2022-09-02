@@ -1,3 +1,6 @@
+""" Generates dictionary containing 26 alphabets, each shifted one position
+from the previous alphabet. """
+
 from collections import deque
 import string
 
