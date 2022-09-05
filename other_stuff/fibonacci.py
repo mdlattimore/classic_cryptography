@@ -6,5 +6,5 @@ def fibonacci_of(n):
         return n
     return fibonacci_of(n - 1) + fibonacci_of(n - 2)
 
-for x in range(100):
+for x in range(300):
     print(f"{fibonacci_of(x):,}")
