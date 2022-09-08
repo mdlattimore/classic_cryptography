@@ -1,12 +1,12 @@
 """A one-time pad encryption and decryption tool. The encryption is done by adding the LETTERS[index] position of each character of the cleartext to the LETTERS[index] position of the corresponding character in the key and then returning the value of the new LETTERS[index] as the enciphered character. Includes a function to create the one-time pad that is the same length as the cleartext"""
-# 26 character set and spaces are eliminated
+# 37 character set including digits and space.
 
-import random
+import secrets
 
 # Character Set
-LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890"
 
-def encrypt(text: str) -> str:
+def one_time_encrypt(text: str) -> str:
     ciphertext = ""
     clr_index = []
     for letter in text:
@@ -16,7 +16,7 @@ def encrypt(text: str) -> str:
         ciphertext += LETTERS[cipher_number]
     return ciphertext
 
-def decrypt(text: str) -> str:
+def one_time_decrypt(text: str) -> str:
     clr_text = ""
     code_idx = []
     for letter in text:
@@ -30,30 +30,33 @@ def create_pad(n: int) -> str:
     """Create a one-time pad using the random module"""
     pad = ""
     for n in range(n):
-        pad += random.choice(LETTERS)
+        pad += secrets.choice(LETTERS)
     return pad
 
-msg = input("Enter message: ").upper()
-cleartext = "".join([letter for letter in msg if letter in LETTERS])  # Eliminates spaces
+if __name__ == '__main__':
 
-# Create the one-time pad
-key = create_pad(len(cleartext))
+    msg = input("Enter message: ").upper()
+    cleartext = "".join([letter for letter in msg if letter in LETTERS])  # Eliminates characters not in LETTERS
 
-# Create ordered list of index positions of key characters in the LETTERS variable
-key_index = []
-for letter in key:
-    key_index.append(LETTERS.find(letter))
+    # Create the one-time pad
+    key = create_pad(len(cleartext))
 
-
-print(f"Cleartext: {cleartext}")
-print(f"Key: {key}")
-encrypted_msg = encrypt(cleartext)
-print(f"Encrypted text: {encrypted_msg}")
-
-# Checks the encryption/decryption accuracy 
-print(decrypt(encrypted_msg))
+    # Create ordered list of index positions of key characters in the LETTERS variable
+    key_index = []
+    for letter in key:
+        key_index.append(LETTERS.find(letter))
 
 
-# A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-# 0 1 2 3 4 5 6 7 8 9 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2
-#                     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
+    print(f"Cleartext: {cleartext}")
+    print(f"Key: {key}")
+    encrypted_msg = one_time_encrypt(cleartext)
+    print(f"Encrypted text: {encrypted_msg}")
+
+    # Checks the encryption/decryption accuracy 
+    print(one_time_decrypt(encrypted_msg))
+
+
+# Chart of indexes for quickly checking accuracy of functions
+# A B C D E F G H I J K L M N O P Q R S T U V W X Y Z _ 1 2 3 4 5 6 7 8 9 0
+# 0 1 2 3 4 5 6 7 8 9 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 
+#                     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6

@@ -7,7 +7,7 @@ import time, os, sys
 from transposition_cipher import transposition_encrypt, transposition_decrypt
 
 def main():
-    inputFilename = "frankenstein.txt"
+    inputFilename = "cipher_functions/texts/frankenstein.txt"
     outputFilename = "frankenstein_encrypted.txt"
     myKey = 10
     myMode = 'encrypt'

@@ -2,6 +2,8 @@ from caesar_shift import caesar_decrypt, caesar_encrypt
 from unicode_shift import unicode_decrypt, unicode_encrypt
 from transposition_cipher import transposition_decrypt, transposition_encrypt
 from belaso_cipher import belaso_encrypt, belaso_decrypt
+from one_time_pad import one_time_encrypt, one_time_decrypt, create_pad, LETTERS
+
 import os
 import pyperclip
 
@@ -68,3 +70,15 @@ elif protocol == 4:
         enc_msg = belaso_decrypt(msg.upper(), key.upper())  # Belaso function expects .upper() arguments.
         pyperclip.copy(enc_msg)
         print(enc_msg)
+# elif protocol == 5:
+#     if action == 1:
+#         key = create_pad(len(msg))
+#         key_index = []
+#         for letter in key:
+#             key_index.append(LETTERS.find(letter))
+#         enc_msg = one_time_encrypt(msg)
+#         print()
+#         print(key)
+#         print()
+#         print(enc_msg)
+
